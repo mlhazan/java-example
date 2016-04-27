@@ -99,8 +99,8 @@ class RemoveMain {
 
                     default:
                          System.exit(0);
-               }
-          }//end of for loop
+               }//end of switch
+          }//end of else
 
      }
 
