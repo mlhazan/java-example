@@ -17,6 +17,11 @@ public class BinarySearch {
      public int size (){
           return nElems;
      }
+     /**
+      * 
+      * @param searchKey
+      * @return the index of searchKey
+      */
      public int find(int searchKey){
           int lowerBound = 0;
           int upperBound = nElems - 1;
@@ -93,7 +98,7 @@ class Main{
           int a = input.nextInt();
           arr.delete(a);
           
-          
+          arr.display();
           System.out.println("Max size "+ maxSize);        
           System.out.println("Array size "+ arr.size());
           System.out.println();
