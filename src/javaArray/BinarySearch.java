@@ -3,9 +3,9 @@ package javaArray;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
+/*******************************************************************************
  * @author Hasan
- */
+ ******************************************************************************/
 public class BinarySearch {
      private int arr [];
      private int nElems;
@@ -17,11 +17,11 @@ public class BinarySearch {
      public int size (){
           return nElems;
      }
-     /**
-      * 
+     
+     /**************************************************************************
       * @param searchKey
       * @return the index of searchKey
-      */
+      *************************************************************************/
      public int find(int searchKey){
           int lowerBound = 0;
           int upperBound = nElems - 1;
@@ -40,7 +40,7 @@ public class BinarySearch {
                }
           }
      } //end of find
-     
+     //-------------------------------------------------------------------------
      public void insert (int value){
           int j;
           for ( j = 0; j < nElems; j++){
@@ -53,6 +53,7 @@ public class BinarySearch {
           arr[j] = value;
           nElems++;
      }
+//------------------------------------------------------------------------------
      public boolean delete( int value){
           int j = find(value);
           if (j== nElems)
@@ -65,6 +66,7 @@ public class BinarySearch {
           return true;
           }
      }
+//------------------------------------------------------------------------------
      public void display(){
           for (int i = 0; i < nElems; i++){
                System.out.print(arr[i]+ " ");
@@ -72,6 +74,7 @@ public class BinarySearch {
           System.out.println();
      }
 }//end of class
+//##############################################################################
 class Main{
      public static void main(String rgs[]){
           int maxSize = 100;
@@ -104,3 +107,4 @@ class Main{
           System.out.println();
      }
 }
+//##############################################################################

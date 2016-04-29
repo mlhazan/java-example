@@ -3,12 +3,12 @@ package javaArray;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * @author Hasan This code 
- * shows an oop way to add/remove element to array
+/*******************************************************************************
+ * @author Hasan 
+ * This code shows an oop way to add/remove element to array
  * Obviously to add element we must declare a new array greater than the older 
  * array.
- */
+ ******************************************************************************/
 public class AddRemoveElement {
 
      private int a[];
@@ -25,7 +25,7 @@ public class AddRemoveElement {
           return a[index];
      }
 }//end of class RemoveEllement
-
+//##############################################################################
 class RemoveMain {
 
      public static void main(String args[]) {
@@ -101,7 +101,7 @@ class RemoveMain {
                          System.exit(0);
                }//end of switch
           }//end of else
-
-     }
-
+     }//end of main
+//------------------------------------------------------------------------------     
 }
+//##############################################################################
