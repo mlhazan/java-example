@@ -36,7 +36,7 @@ public class InsertionSort {
 //------------------------------------------------------------------------------
      public void sort(){
           int in, out;
-          for(out = 1; out < nElems-1; out++ ){
+          for(out = 1; out < nElems; out++ ){
                int temp = arr[out];
                in = out;
                while (in > 0 && arr[in - 1]>temp){
@@ -54,19 +54,11 @@ class InsertionMain{
      public static void main(String rgs[]){
           int maxSize = 11;
           Random random = new Random();
-          SelectionSort arr = new SelectionSort(maxSize);
+          InsertionSort arr = new InsertionSort(maxSize);
           for (int n = 0; n < 10; n++) {
                arr.insert(random.nextInt(10) + 1);
          }
-//          arr.insert(7);
-//          arr.insert(1);
-//          arr.insert(2);
-//          arr.insert(1);
-//          arr.insert(5);
-//          arr.insert(6);
-//          arr.insert(9);
-//          arr.insert(4);
-//          arr.insert(11);
+
           arr.display();
           arr.sort();
           arr.display();
