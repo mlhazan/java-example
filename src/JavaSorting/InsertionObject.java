@@ -47,25 +47,22 @@ class InsertionObject{
           for(int i = 0; i < nElems; i++)
                person[i].displayPerson();
      }
-//------------------------------------------------------------------------------     
-
 //------------------------------------------------------------------------------
      public void sort(){
           int in, out;
           for(out = 1; out < nElems; out++ ){
                Person temp =person[out];
                in = out;
-               while (in > 0 && person[in - 1].getLastName().compareTo(temp.getLastName())>0){
+               while (in > 0 && person[in - 1].getLastName().compareTo(temp.getLastName()) > 0){
                     person[in] =  person[in -1];
                     --in;
                }
                person[in] = temp;
-          }
-         
+          }       
      }
 
 }//end of class ArrayObject 
-//##############################################################################//##############################################################################
+//##############################################################################
 
 class MainArrayObject{
      public static void main(String args[]){
@@ -79,9 +76,7 @@ class MainArrayObject{
           
           person.display();
           System.out.println("-----------------------------------------------");
-          person.sort();
-          
-          
+          person.sort();          
           person.display();
      }//end of main
 }// end of MainArrayObject
