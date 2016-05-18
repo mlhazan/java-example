@@ -2,13 +2,13 @@ package JavaStackQueues;
 
 import java.util.Scanner;
 
-class Stackx {
+class Bracket {
 
      private final int maxSize;
      private final char stackArray[];
      private int top;
 
-     public Stackx(int s) {
+     public Bracket(int s) {
           maxSize = s;
           stackArray = new char[maxSize];
           top = -1; //no item yet
@@ -37,52 +37,77 @@ class Stackx {
 }
 //##############################################################################
 
-class Reverser {
+
+class BracketCheck {
 
      private final String input;
      private String output;
 
-     public Reverser(String in) {
+     public BracketCheck(String in) {
           input = in;
      }
 
-     public String doRev() {
+     public void check() {
           int stackSize = input.length();
-          Stackx theStack = new Stackx(stackSize);
+          Bracket theStack = new Bracket(stackSize);
           for (int j = 0; j < stackSize; j++) {
                char ch = input.charAt(j);
-               theStack.push(ch);
-          }
-          output = "";
-          while (!theStack.isEmpty()) {
-               char ch = (char) theStack.pop();
-               output = output + ch;
-          }
-          return output;
-     }
-//------------------------------------------------------------------------------     
-}
-//##############################################################################
+               switch (ch) {
+                    case '{':
+                    case '[':
+                    case '(':
+                         theStack.push(ch);
+                         break;
+                    case '}':
+                    case ']':
+                    case ')':
+                         if (!theStack.isEmpty()) {
+                              char chx = (char) theStack.pop();
+                              if ((ch == '}' && chx != '{')
+                                      || (ch == ']' && chx != '[')
+                                      || (ch == ')' && chx != '(')) {
+                                   System.err.println("Error:" + ch + "at" + j);
+                              }
+                         }
+//                         else {
+//                              System.err.println("Error:" + ch + "at" + j);
+//                         }
+                         break;
+                    default:
+                         break;
+               }//end switch
 
-class ReverseApp {
+          }//end for
+
+          if (!theStack.isEmpty()) {
+               System.err.println("Error: Missing right delimeter");
+          }
+
+//------------------------------------------------------------------------------     
+     }
+//##############################################################################
+}
+
+class BracketApp {
 
      public static void main(String args[]) {
           String input;
           String output;
- Scanner br = new Scanner(System.in);
+          Scanner br = new Scanner(System.in);
+          System.out.println("Enter a Equation with delimeters:");
           while (true) {
-               System.out.println("Enter a word:");
 
                input = br.next();
                if (input.equals("")) {
                     break;
                }
 
-               Reverser theReverser = new Reverser(input);
-               output = theReverser.doRev();
-               System.out.println(output);
+               BracketCheck theChecker = new BracketCheck(input);
+               theChecker.check();
+
           }
      }
 //------------------------------------------------------------------------------
 }
+
 //##############################################################################
