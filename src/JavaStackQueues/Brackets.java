@@ -68,6 +68,7 @@ class BracketCheck {
                                       || (ch == ')' && chx != '(')) {
                                    System.err.println("Error:" + ch + "at" + j);
                               }
+                              
                          }
 //                         else {
 //                              System.err.println("Error:" + ch + "at" + j);
@@ -82,7 +83,8 @@ class BracketCheck {
           if (!theStack.isEmpty()) {
                System.err.println("Error: Missing right delimeter");
           }
-
+          if(theStack.isEmpty())
+               System.out.println("Equation is balanced");
 //------------------------------------------------------------------------------     
      }
 //##############################################################################
