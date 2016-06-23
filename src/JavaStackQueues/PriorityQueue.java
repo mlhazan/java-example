@@ -12,7 +12,7 @@ public class PriorityQueue {
           nItems = 0;
      }
 //------------------------------------------------------------------------------
-
+//40 30 60 50 45
      public void insert(long item) {
           int j;
           if (nItems == 0)
@@ -55,6 +55,13 @@ public class PriorityQueue {
           return nItems;
      }
 //------------------------------------------------------------------------------
+ public void display() {
+          for (int i = 0; i < nItems; i++) {
+               System.out.print(queArray[i] + " ");
+          }
+          System.out.println();
+     }
+//------------------------------------------------------------------------------
 }
 //##############################################################################
 
@@ -71,11 +78,12 @@ class PriorityQueueApp {
           theQueue.remove();
           theQueue.remove();
 
-          theQueue.insert(50);
+          theQueue.insert(30);
           theQueue.insert(60);
-          theQueue.insert(70);
-          theQueue.insert(80);
-
+          theQueue.insert(50);
+          theQueue.insert(45);
+          
+          theQueue.display();
           while (!theQueue.isEmpty()) {
                System.out.print(theQueue.peekMin()+ " ");
                theQueue.remove();            
