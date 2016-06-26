@@ -62,7 +62,7 @@ class LinkListStack {
           System.out.println("");
      }
 // -------------------------------------------------------------
-} // end class Link4List
+} // end class LinkListStack
 ////////////////////////////////////////////////////////////////
 
 public class LinkStack {
