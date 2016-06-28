@@ -11,8 +11,8 @@ class Link5 {
      }
 //------------------------------------------------------------------------------
 
-     public void LinkDisplay() {
-          System.out.println(dData + " ");
+     public void displayLink() {
+          System.out.print(dData + " ");
      }
 //------------------------------------------------------------------------------
 }
@@ -22,7 +22,7 @@ class LinkedListQueue {
 
      Link5 first;
      Link5 last;
-     LinkedList queue;
+     Link5 newLink;
 //------------------------------------------------------------------------------     
 
      public LinkedListQueue() {
@@ -37,16 +37,39 @@ class LinkedListQueue {
      }
 // -----------------------------------------------------------------------------
 
-     public void insertLast(float d) {
+     public void insertLast(long d) {
+          newLink = new Link5(d);
+          if (isEmpty()) {
+               first = newLink;
+          } else {
+               last.next = newLink;
+          }
+          last = newLink;
 
      }
 //------------------------------------------------------------------------------
+
      public long deleteFast() {
-          return 0;
+          { // (assumes non-empty list)
+               long temp = first.dData;
+               if (first.next == null) // if only one item
+               {
+                    last = null; // null <-- last
+               }
+               first = first.next; // first --> old next
+               return temp;
+          }
      }
 
 //------------------------------------------------------------------------------
      public void displayList() {
+          Link5 current = first; // start at beginning of list
+          while (current != null) // until end of list,
+          {
+               current.displayLink(); // print data
+               current = current.next; // move to next link
+          }
+          System.out.println();
 
      }
 //------------------------------------------------------------------------------
@@ -61,14 +84,17 @@ public class LinkedQueue {
           linkListQueue = new LinkedListQueue();
      }
 //------------------------------------------------------------------------------
-     public void push(float dd) {
+
+     public void push(long dd) {
           linkListQueue.insertLast(dd);
      }
 //------------------------------------------------------------------------------
+
      public long pop() {
           return linkListQueue.deleteFast();
      }
 //------------------------------------------------------------------------------
+
      public boolean isEmpty() // true if stack is empty
      {
           return (linkListQueue.isEmpty());
@@ -92,10 +118,11 @@ class LinkedQueueApp {
           linkedQueue.push(50);
           linkedQueue.push(70);
 
+          linkedQueue.displayStack();
           linkedQueue.pop();
           linkedQueue.pop();
-          linkedQueue.pop();
-
+          //linkedQueue.pop();
+          
+          linkedQueue.displayStack();
      }
-
 }
