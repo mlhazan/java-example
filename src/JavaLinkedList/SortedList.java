@@ -42,17 +42,16 @@ class SortedList {
           Link6 newLink = new Link6(key); // make new link
           Link6 previous = null; // start at first
           Link6 current = first;
-// until end of list,
+          // until end of list
           while (current != null && key > current.dData) { // or key > current,
                previous = current;
                current = current.next; // go to next item
           }
-          if (previous == null) // at beginning of list
-          {
+          if (previous == null) {// at beginning of list
                first = newLink; // first --> newLink
-          } else // not at beginning
-          {
-               previous.next = newLink; // old prev --> newLink
+          }
+          else { // not at beginning
+               first.next = newLink; // old prev --> newLink
           }
           newLink.next = current; // newLink --> old current
      } // end insert()
@@ -84,8 +83,8 @@ class SortedListApp {
 
      public static void main(String[] args) { // create new list
           SortedList theSortedList = new SortedList();
-          theSortedList.insert(20); // insert 2 items
-          theSortedList.insert(40);
+          theSortedList.insert(40); // insert 2 items
+          theSortedList.insert(20);
           theSortedList.displayList(); // display list
           theSortedList.insert(10); // insert 3 more items
           theSortedList.insert(30);

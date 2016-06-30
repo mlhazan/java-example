@@ -9,9 +9,9 @@ class Link {
 
      public Link(int id, double dd) // constructor
      {
-          iData = id; // initialize data
-          dData = dd; // (‘next’ is automatically
-     } // set to null)
+          iData = id; 
+          dData = dd; 
+     } 
 // -----------------------------------------------------------------------------
 
      public void displayLink() // display ourself
@@ -40,6 +40,7 @@ class LinkList {
 
      public void insertFirst(int id, double dd) { // make new link
           Link newLink = new Link(id, dd);
+          
           newLink.next = first; // newLink --> old first
           first = newLink; // first --> newLink
      }
