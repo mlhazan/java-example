@@ -1,4 +1,3 @@
-
 package JavaSorting;
 
 class QuickSort {
@@ -55,7 +54,7 @@ class QuickSort {
      public int partitionIt(int left, int right, int pivot) {
           int leftPtr = left - 1; // left (after ++)
           int rightPtr = right; // right-1 (after --)
-          while (true) { 
+          while (true) {
                // find bigger item
                while (theArray[++leftPtr] < pivot); // (nop) 
                //find smaller item
@@ -78,6 +77,13 @@ class QuickSort {
           int temp = theArray[dex1]; // A into temp
           theArray[dex1] = theArray[dex2]; // B into A
           theArray[dex2] = temp; // temp into B
+
+          System.out.print("A = ");
+          for (int j = 0; j < nElems; j++) // for each element,
+          {
+               System.out.print(theArray[j] + " "); // display it
+          }
+          System.out.println();
      } // end swap(
 //------------------------------------------------------------------------------
 } // end class QuickSort
@@ -86,14 +92,24 @@ class QuickSort {
 class QuickSort1App {
 
      public static void main(String[] args) {
-          int maxSize = 16; // array size
+          int maxSize = 10; // array size
           QuickSort arr;
           arr = new QuickSort(maxSize); // create array
-          for (int j = 0; j < maxSize; j++) // fill array with
-          { // random numbers
-               int n = (int) (java.lang.Math.random() * 99);
-               arr.insert(n);
-          }
+//          for (int j = 0; j < maxSize; j++) // fill array with
+//          { // random numbers
+//               int n = (int) (java.lang.Math.random() * 99);
+//               arr.insert(n);
+//          }
+          arr.insert(42);
+          arr.insert(89);
+          arr.insert(63);
+          arr.insert(12);
+          arr.insert(94);
+          arr.insert(27);
+          arr.insert(78);
+          arr.insert(3);
+          arr.insert(50);
+          arr.insert(36);
           arr.display(); // display items
           arr.quickSort(); // quicksort them
           arr.display(); // display them again
