@@ -10,32 +10,32 @@ package JavaHash;
 
 // demonstrates hash table with linear probing
 import java.io.*;
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class DataItem
    {                                // (could have more data)
-   private int iData;               // data item (key)
-//--------------------------------------------------------------
+   private final int iData;               // data item (key)
+//------------------------------------------------------------------------------
    public DataItem(int ii)          // constructor
       { iData = ii; }
-//--------------------------------------------------------------
+//------------------------------------------------------------------------------
    public int getKey()
       { return iData; }
-//--------------------------------------------------------------
+//------------------------------------------------------------------------------
    }  // end class DataItem
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class HashTable
    {
-   private DataItem[] hashArray;    // array holds hash table
-   private int arraySize;
-   private DataItem nonItem;        // for deleted items
-// -------------------------------------------------------------
+   private final DataItem[] hashArray;    // array holds hash table
+   private final int arraySize;
+   private final DataItem nonItem;        // for deleted items
+// -----------------------------------------------------------------------------
    public HashTable(int size)       // constructor
       {
       arraySize = size;
       hashArray = new DataItem[arraySize];
       nonItem = new DataItem(-1);   // deleted item key is -1
       }
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    public void displayTable()
       {
       System.out.print("Table: ");
@@ -48,12 +48,12 @@ class HashTable
          }
       System.out.println("");
       }
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    public int hashFunc(int key)
       {
       return key % arraySize;       // hash function
       }
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    public void insert(DataItem item) // insert a DataItem
    // (assumes table not full)
       {
@@ -64,11 +64,11 @@ class HashTable
                       hashArray[hashVal].getKey() != -1)
          {
          ++hashVal;                 // go to next cell
-         hashVal %= arraySize;      // wraparound if necessary
+         //hashVal %= arraySize;      // wraparound if necessary
          }
       hashArray[hashVal] = item;    // insert item
       }  // end insert()
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    public DataItem delete(int key)  // delete a DataItem
       {
       int hashVal = hashFunc(key);  // hash the key
@@ -82,11 +82,11 @@ class HashTable
             return temp;                        // return item
             }
          ++hashVal;                 // go to next cell
-         hashVal %= arraySize;      // wraparound if necessary
+         //hashVal %= arraySize;      // wraparound if necessary
          }
       return null;                  // can't find item
       }  // end delete()
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    public DataItem find(int key)    // find item with key
       {
       int hashVal = hashFunc(key);  // hash the key
@@ -96,13 +96,13 @@ class HashTable
          if(hashArray[hashVal].getKey() == key)
             return hashArray[hashVal];   // yes, return item
          ++hashVal;                 // go to next cell
-         hashVal %= arraySize;      // wraparound if necessary
+         //hashVal %= arraySize;      // wraparound if necessary
          }
       return null;                  // can't find item
       }
-// -------------------------------------------------------------
+// -----------------------------------------------------------------------------
    }  // end class HashTable
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 class HashTableApp
    {
    public static void main(String[] args) throws IOException
@@ -163,7 +163,7 @@ class HashTableApp
             }  // end switch
          }  // end while
       }  // end main()
-//--------------------------------------------------------------
+//------------------------------------------------------------------------------
    public static String getString() throws IOException
       {
       InputStreamReader isr = new InputStreamReader(System.in);
@@ -171,19 +171,19 @@ class HashTableApp
       String s = br.readLine();
       return s;
       }
-//--------------------------------------------------------------
+//------------------------------------------------------------------------------
    public static char getChar() throws IOException
       {
       String s = getString();
       return s.charAt(0);
       }
-//-------------------------------------------------------------
+//-----------------------------------------------------------------------------
    public static int getInt() throws IOException
       {
       String s = getString();
       return Integer.parseInt(s);
       }
-//--------------------------------------------------------------
+//------------------------------------------------------------------------------
    }  // end class HashTableApp
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
