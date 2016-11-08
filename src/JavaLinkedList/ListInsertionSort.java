@@ -52,7 +52,7 @@ class SortedList2 {
                previous.next = k; // old prev --> k
           }
           k.next = current; // k --> old current        **
-              } // end insert()
+     } // end insert()
 // -------------------------------------------------------------
 
      public Link7 remove() // return & delete first link
