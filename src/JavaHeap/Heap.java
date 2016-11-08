@@ -96,7 +96,7 @@ class Heap {
                int leftChild = 2 * index + 1;
                int rightChild = leftChild + 1;
                // find larger child
-               if (/*rightChild < currentSize && // (rightChild exists?)*/
+               if (rightChild < currentSize && /*(rightChild exists?)*/
                        heapArray[leftChild].getKey()
                        < heapArray[rightChild].getKey()) {
                     largerChild = rightChild;
