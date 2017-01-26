@@ -6,9 +6,24 @@ package JavaGraphDFS;
  * @os windows 10
  * @date Nov 10, 2016
  */
+class Vertex {
+
+     public char label;        // label (e.g. 'A')
+     public boolean wasVisited;
+// ------------------------------------------------------------
+
+     public Vertex(char lab) // constructor
+     {
+          label = lab;
+          wasVisited = false;
+     }
+// ------------------------------------------------------------
+}  // end class Vertex
+////////////////////////////////////////////////////////////////
+
 class StackX {
 
-     private final int SIZE = 6;
+     private final int SIZE = 5;
      private final int[] st;
      private int top;
 // ------------------------------------------------------------
@@ -46,24 +61,9 @@ class StackX {
 }  // end class StackX
 ////////////////////////////////////////////////////////////////
 
-class Vertex {
-
-     public char label;        // label (e.g. 'A')
-     public boolean wasVisited;
-// ------------------------------------------------------------
-
-     public Vertex(char lab) // constructor
-     {
-          label = lab;
-          wasVisited = false;
-     }
-// ------------------------------------------------------------
-}  // end class Vertex
-////////////////////////////////////////////////////////////////
-
 class Graph {
 
-     private final int MAX_VERTS = 6;
+     private final int MAX_VERTS = 5;
      private final Vertex vertexList[]; // list of vertices
      private final int adjMat[][];      // adjacency matrix
      private int nVerts;          // current number of vertices
@@ -76,13 +76,6 @@ class Graph {
           // adjacency matrix
           adjMat = new int[MAX_VERTS][MAX_VERTS];
           nVerts = 0;
-          for (int y = 0; y < MAX_VERTS; y++) // set adjacency
-          {
-               for (int x = 0; x < MAX_VERTS; x++) //    matrix to 0
-               {
-                    adjMat[x][y] = 0;
-               }
-          }
           theStack = new StackX();
      }  // end constructor
 // ------------------------------------------------------------
@@ -124,11 +117,6 @@ class Graph {
                }
           }  // end while
 
-          // stack is empty, so we're done
-          for (int j = 0; j < nVerts; j++) // reset flags
-          {
-               vertexList[j].wasVisited = false;
-          }
      }  // end dfs
 // ------------------------------------------------------------
      // returns an unvisited vertex adj to v
@@ -152,8 +140,8 @@ class DFSApp {
           theGraph.addVertex('A');    // 0  (start for dfs)
           theGraph.addVertex('B');    // 1
           theGraph.addVertex('C');    // 2
-//          theGraph.addVertex('D');    // 3
-//          theGraph.addVertex('E');    // 4
+          theGraph.addVertex('D');    // 3
+          theGraph.addVertex('E');    // 4
 
           theGraph.addEdge(0, 1);     // AB
           theGraph.addEdge(1, 2);     // BC

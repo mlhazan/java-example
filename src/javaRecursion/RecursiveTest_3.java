@@ -4,28 +4,23 @@ package javaRecursion;
 public class RecursiveTest_3 {
  static int test=0;
      public static void main(String[] args) {
-          int arr[] = {2, 3, 1, 1, 2};
-         
-          int n = arr.length;
-          System.out.printf("Total is %d ", result(arr, 0, n - 1));
-          System.out.println(test);
+            
+          int n = 4;
+          System.out.printf("Total is %d ", result(0, n-1));        
      }
-     public static int result(int arr[], int l, int h) {
+     public static int result(int l, int h) {
           // Base case: when source and destination are same
           if (h == l) {
+           
+               System.out.println("");
                return 0;
           }
 
-          if (arr[l] == 0) {
-               return Integer.MAX_VALUE;
+            for (int i = l + 1; i <= h; i++) {
+               int total = result( i, h);            
+               System.out.println("I am from i = "+i + " and l = "+l +" test = "+test);
+               test++;
           }
-
-          int min = 0;
-          for (int i = l + 1; i <= h; i++) {
-               int total = result(arr, i, h);            
-                    min = total + 1;   
-                    test++;
-          }
-          return min;
+          return test;
      }
 }

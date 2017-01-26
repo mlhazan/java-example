@@ -1,52 +1,49 @@
-package JavaGraphBFS;
+package JavaGraphMST;
 
 /**
  * @author Hasan
  * @version java version "1.8.0_92"
  * @os windows 10
- * @date Nov 11, 2016
+ * @date Nov 12, 2016
  */
-class Queue {
+class StackX {
 
      private final int SIZE = 5;
-     private final int[] queArray;
-     private int front;
-     private int rear;
+     private int[] st;
+     private int top;
 // -------------------------------------------------------------
 
-     public Queue() // constructor
+     public StackX() // constructor
      {
-          queArray = new int[SIZE];
-          front = 0;
-          rear = -1;
+          st = new int[SIZE];    // make array
+          top = -1;
      }
 // -------------------------------------------------------------
 
-     public void insert(int j) // put item at rear of queue
+     public void push(int j) // put item on stack
      {
-          if (rear == SIZE - 1) {
-               rear = -1;
-          }
-          queArray[++rear] = j;
+          st[++top] = j;
      }
 // -------------------------------------------------------------
 
-     public int remove() // take item from front of queue
+     public int pop() // take item off stack
      {
-          int temp = queArray[front++];
-          if (front == SIZE) {
-               front = 0;
-          }
-          return temp;
+          return st[top--];
      }
 // -------------------------------------------------------------
 
-     public boolean isEmpty() // true if queue is empty
+     public int peek() // peek at top of stack
      {
-          return (rear + 1 == front || (front + SIZE - 1 == rear));
+          return st[top];
      }
 // -------------------------------------------------------------
-}  // end class Queue
+
+     public boolean isEmpty() // true if nothing on stack
+     {
+          return (top == -1);
+     }
+// -------------------------------------------------------------
+}  // end class StackX
 ////////////////////////////////////////////////////////////////
 
 class Vertex {
@@ -70,16 +67,16 @@ class Graph {
      private final Vertex vertexList[]; // list of vertices
      private final int adjMat[][];      // adjacency matrix
      private int nVerts;          // current number of vertices
-     private final Queue theQueue;
-// ------------------------------------------------------------
+     private final StackX theStack;
+// -------------------------------------------------------------
 
      public Graph() // constructor
      {
           vertexList = new Vertex[MAX_VERTS];
           // adjacency matrix
           adjMat = new int[MAX_VERTS][MAX_VERTS];
-          nVerts = 0;   
-          theQueue = new Queue();
+          nVerts = 0;
+          theStack = new StackX();
      }  // end constructor
 // -------------------------------------------------------------
 
@@ -99,25 +96,31 @@ class Graph {
      }
 // -------------------------------------------------------------
 
-     public void bfs() // breadth-first search
-     {                                // begin at vertex 0
-          vertexList[0].wasVisited = true; // mark it
-          displayVertex(0);                // display it
-          theQueue.insert(0);              // insert at tail
-          int v2;
+     public void mst() // minimum spanning tree (depth first)
+     {                                  // start at 0
+          vertexList[0].wasVisited = true;   // mark it
+          theStack.push(0);                  // push it
 
-          while (!theQueue.isEmpty()) // until queue empty,
-          {
-               int v1 = theQueue.remove();   // remove vertex at head
-               // until it has no unvisited neighbors
-               while ((v2 = getAdjUnvisitedVertex(v1)) != -1) {                                  // get one,
-                    vertexList[v2].wasVisited = true;  // mark it
-                    displayVertex(v2);                 // display it
-                    theQueue.insert(v2);               // insert it
-               }   // end while
-          }  // end while(queue not empty)
+          while (!theStack.isEmpty()) // until stack empty
+          {                               // get stack top
+               int currentVertex = theStack.peek();
+               // get next unvisited neighbor
+               int v = getAdjUnvisitedVertex(currentVertex);
+               if (v == -1) // if no more neighbors
+               {
+                    theStack.pop();              //    pop it away
+               } else // got a neighbor
+               {
+                    vertexList[v].wasVisited = true;  // mark it
+                    displayVertex(currentVertex);     // from currentV
+                    theStack.push(v);                 // push it
+                    // display edge                  
+                    displayVertex(v);                 // to v
+                    System.out.print(" ");
+               }
+          }  // end while(stack not empty)
 
-     }  // end bfs()
+     }  // end mst()
 // -------------------------------------------------------------
      // returns an unvisited vertex adj to v
 
@@ -128,30 +131,36 @@ class Graph {
                }
           }
           return -1;
-     }  // end getAdjUnvisitedVertex()
+     }  // end getAdjUnvisitedVert()
 // -------------------------------------------------------------
 }  // end class Graph
 ////////////////////////////////////////////////////////////////
 
-class BFSApp {
+class MSTApp {
 
      public static void main(String[] args) {
           Graph theGraph = new Graph();
-          theGraph.addVertex('A');    // 0  (start for bfs)
+          theGraph.addVertex('A');    // 0  (start for mst)
           theGraph.addVertex('B');    // 1
           theGraph.addVertex('C');    // 2
           theGraph.addVertex('D');    // 3
           theGraph.addVertex('E');    // 4
 
           theGraph.addEdge(0, 1);     // AB
-          theGraph.addEdge(1, 2);     // BC
+          theGraph.addEdge(0, 2);     // AC
           theGraph.addEdge(0, 3);     // AD
+          theGraph.addEdge(0, 4);     // AE
+          theGraph.addEdge(1, 2);     // BC
+          theGraph.addEdge(1, 3);     // BD
+          theGraph.addEdge(1, 4);     // BE
+          theGraph.addEdge(2, 3);     // CD
+          theGraph.addEdge(2, 4);     // CE
           theGraph.addEdge(3, 4);     // DE
 
-          System.out.print("Visits: ");
-          theGraph.bfs();             // breadth-first search
+          System.out.print("Minimum spanning tree: ");
+          theGraph.mst();             // minimum spanning tree
           System.out.println();
      }  // end main()
-}  // end class BFSApp
+}  // end class MSTApp
 ////////////////////////////////////////////////////////////////
 

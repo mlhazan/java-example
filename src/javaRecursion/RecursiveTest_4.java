@@ -1,6 +1,6 @@
 package javaRecursion;
 
-public class Factorial2 {
+public class RecursiveTest_4 {
 
      public static void main(String[] args) {
           System.out.println("Factorial of 4 = "+factorial(4));

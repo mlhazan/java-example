@@ -8,7 +8,7 @@ package javaRecursion;
  */
 public class RecursiveTest {
 
-     static int size = 10;
+     static int size = 5;
 
      public static void main(String[] args) {
           doRecursive(size);
@@ -17,14 +17,11 @@ public class RecursiveTest {
      private static void doRecursive(int i) {
           if (i == 1) {
                System.out.println("i = " + i);
-               return;
+               
           } else {
                doRecursive(i - 1);
-          }
-          if (i == 2) {
-               System.out.println("i = " + i);
-          } else {
                System.out.println("i = " + i);
           }
+         
      }
 }
