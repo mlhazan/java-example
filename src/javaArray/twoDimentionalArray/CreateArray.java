@@ -15,11 +15,9 @@ public class CreateArray {
           for (int i = 0; i < arr.length; i++) {
                for (int j = 0; j < arr[i].length; j++) {
                     arr[i][j] = (int) (Math.random() * 9);
-                    System.out.print(arr[i][j] + " ");
-                    if (j == arr[i].length - 1) {
-                         System.out.println("");
-                    }
+                    System.out.print(arr[i][j] + " ");                  
                }
+               System.out.println();
           }
      }
 }
